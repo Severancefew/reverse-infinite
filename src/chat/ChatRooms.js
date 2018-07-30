@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { rooms } from '../utils/constants';
 
 import Button from '@material-ui/core/Button';
@@ -12,13 +12,15 @@ const styles = theme => ({
   },
 });
 
-const ChatRooms = ({ classes }) => {
+const ChatRooms = ({ classes, setRoom, currentRoom }) => {
   return (
     <div className={classes.rooms}>
       {Object.values(rooms).map(room => (
-        <Button key={room}>
-          <Link to={`/${room}`}>{room}</Link>
-        </Button>
+        <NavLink activeStyle={{ color: 'red' }} to={`/${room}`}>
+          <Button key={room} onClick={() => setRoom(currentRoom === 0 ? 1 : 0)}>
+            {room}
+          </Button>
+        </NavLink>
       ))}
     </div>
   );

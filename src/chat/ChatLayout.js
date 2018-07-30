@@ -57,6 +57,12 @@ class Chat extends React.Component {
     currentRoom: 0,
   };
 
+  setRoom = currentRoom => {
+    this.setState({
+      currentRoom,
+    });
+  };
+
   setRef = node => {
     this.ref = node;
   };
@@ -165,7 +171,7 @@ class Chat extends React.Component {
         <Grid className={classes.messages} container>
           <div className={classes.messageWrapper}>
             <Grid item xs={3}>
-              <ChatRooms />
+              <ChatRooms setRoom={this.setRoom} currentRoom={currentRoom} />
             </Grid>
             <Grid item xs={9}>
               <Route
