@@ -16,8 +16,8 @@ const ChatRooms = ({ classes, setRoom, currentRoom }) => {
   return (
     <div className={classes.rooms}>
       {Object.values(rooms).map(room => (
-        <NavLink activeStyle={{ color: 'red' }} to={`/${room}`}>
-          <Button key={room} onClick={() => setRoom(currentRoom === 0 ? 1 : 0)}>
+        <NavLink key={room} activeStyle={{ color: 'red' }} to={`/${room}`}>
+          <Button onClick={() => setRoom(currentRoom === 0 ? 1 : 0)}>
             {room}
           </Button>
         </NavLink>
