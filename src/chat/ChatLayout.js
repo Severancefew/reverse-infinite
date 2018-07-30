@@ -11,6 +11,39 @@ import ChatRooms from './ChatRooms';
 import ChatList from './ChatList';
 import ChatHeader from './ChatHeader';
 
+import { rooms } from '../utils/constants';
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 10,
+    flexGrow: 1,
+  },
+  header: {
+    minHeight: '50px',
+    flexGrow: 0,
+  },
+  messages: {
+    display: 'flex',
+    flexGrow: 1,
+    flexDirection: 'column',
+  },
+  messageWrapper: {
+    display: 'flex',
+    alignItems: 'stretch',
+    flexGrow: 1,
+  },
+  input: {
+    flexShrink: 0,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
+
 class Chat extends React.Component {
   cache = new CellMeasurerCache({
     fixedWidth: true,
