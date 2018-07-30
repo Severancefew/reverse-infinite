@@ -3,7 +3,7 @@ import { userNames, rooms } from '../utils/constants';
 import copy from 'copy-to-clipboard';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import { newDayString } from '../utils/isRecent';
+import { newDayString } from '../utils/dateHelpers';
 
 const styles = {
   paper: {

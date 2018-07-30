@@ -7,7 +7,7 @@ import {
   InfiniteLoader,
 } from 'react-virtualized';
 import { isNaN } from 'lodash-es';
-import { isRecentMessage, isRecentDay } from '../utils/isRecent';
+import { isRecentMessage, isRecentDay } from '../utils/dateHelpers';
 
 import { withStyles } from '@material-ui/core/styles';
 
