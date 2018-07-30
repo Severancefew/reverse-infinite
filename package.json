@@ -13,7 +13,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-data-set": "node ./src/utils/generateDataSet.js"
   },
   "devDependencies": {
     "copy-to-clipboard": "^3.0.8",
