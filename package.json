@@ -1,5 +1,6 @@
 {
   "name": "reverse-infinite",
+  "homepage": "http://severancefew.github.io/reverse-infinite",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,11 +16,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
     "generate-data-set": "node ./src/utils/generateDataSet.js"
   },
   "devDependencies": {
     "copy-to-clipboard": "^3.0.8",
     "faker": "^4.1.0",
+    "gh-pages": "^1.2.0",
     "lodash-es": "^4.17.10",
     "prettier": "^1.14.0"
   },
