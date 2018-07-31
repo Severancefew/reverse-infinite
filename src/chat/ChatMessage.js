@@ -41,9 +41,9 @@ class ChatMessage extends React.Component {
   copyToClipboard = () => {
     const { currentRoom, idx } = this.props;
     // eslint-disable-next-line
-    const { protocol, host } = location;
+    const { protocol, host, pathname } = location;
 
-    copy(`${protocol}//${host}/${rooms[currentRoom]}/${idx}`);
+    copy(`${protocol}//${host}/${pathname}/${idx}`);
   };
 
   render() {
