@@ -43,7 +43,7 @@ class ChatMessage extends React.Component {
     // eslint-disable-next-line
     const { protocol, host, pathname } = location;
 
-    copy(`${protocol}//${host}/${pathname}/${idx}`);
+    copy(`${protocol}//${host}${pathname}/${idx}`);
   };
 
   render() {
