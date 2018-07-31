@@ -40,7 +40,7 @@ class ChatList extends React.Component {
     return this.props.fetchMore();
   }
 
-  getSnapshotBeforeUpdate(prevProps, prevState) {
+  getSnapshotBeforeUpdate(prevProps) {
     if (
       prevProps.history.messages.length === 0 &&
       this.props.history.messages.length > 0
@@ -77,24 +77,30 @@ class ChatList extends React.Component {
       const { history, fetchMore } = this.props;
       const { loadByLink, scrollToIdx } = this.state;
 
-      const minimalMessageOffset = 20;
+      const minimalMessageOffset = 5;
       const messageInt = this.getMessageNumber();
+      const count = history.messages.length;
       const amountToFetch =
-        history.messages.length < messageInt
-          ? messageInt + minimalMessageOffset
-          : 0;
+        count < messageInt ? messageInt + minimalMessageOffset : 0;
 
+      // we do have message number, did not scroll to it
       if (
         messageInt &&
         !this.isScrolledAlready(messageInt, scrollToIdx) &&
         loadByLink
       ) {
         if (amountToFetch) {
-          fetchMore(amountToFetch, () => {
-            this.scrollToIndex({ idx: messageInt });
-          });
+          fetchMore(
+            {
+              from: count,
+              pageSize: messageInt - (count - minimalMessageOffset),
+            },
+            () => {
+              this.scrollToIndex({ idx: 0 });
+            },
+          );
         } else {
-          this.scrollToIndex({ idx: messageInt });
+          this.scrollToIndex({ idx: 0 });
         }
       }
 
@@ -177,7 +183,7 @@ class ChatList extends React.Component {
   };
 
   render() {
-    const { history, fetchMore, classes, cache } = this.props;
+    const { history, fetchMore, classes, cache, onResize } = this.props;
 
     return (
       <InfiniteLoader
@@ -188,7 +194,7 @@ class ChatList extends React.Component {
         loadMoreRows={() => fetchMore()}
       >
         {({ onRowsRendered, registerChild }) => (
-          <AutoSizer onResize={this.onResize}>
+          <AutoSizer onResize={onResize}>
             {({ width, height }) => (
               <List
                 ref={ref => {

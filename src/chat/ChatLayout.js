@@ -90,7 +90,9 @@ class Chat extends React.Component {
     this.ref.recomputeRowHeights();
   };
 
-  fetchMore = (length = 50, cb = () => {}) => {
+  scrollToRow = idx => this.ref.scrollToRow(idx);
+
+  fetchMore = (params, cb = () => {}) => {
     const { isLoading, history, currentRoom } = this.state;
 
     const prevMessages = get(history, `[${currentRoom}].messages`, []);
@@ -107,6 +109,7 @@ class Chat extends React.Component {
       () => {
         fetchHistory({
           offset: prevOffset,
+          ...params,
         }).then(resp => {
           const messages = [...resp.messages, ...prevMessages];
 
@@ -123,7 +126,6 @@ class Chat extends React.Component {
               isLoading: false,
             }),
             () => {
-              this.ref.recomputeRowHeights();
               cb();
             },
           );
@@ -150,7 +152,7 @@ class Chat extends React.Component {
           },
         },
       },
-      () => this.ref.scrollToRow(history[currentRoom].messages.length + 1),
+      () => this.scrollToRow(history[currentRoom].messages.length + 1),
     );
   };
 
@@ -170,14 +172,15 @@ class Chat extends React.Component {
         </Grid>
         <Grid className={classes.messages} container>
           <div className={classes.messageWrapper}>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <ChatRooms setRoom={this.setRoom} currentRoom={currentRoom} />
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={10}>
               <Route
                 path="/:channel/:message?"
                 render={({ match }) => (
                   <ChatList
+                    scrollToRow={this.scrollToRow}
                     onResize={this.onResize}
                     setRef={this.setRef}
                     cache={this.cache}

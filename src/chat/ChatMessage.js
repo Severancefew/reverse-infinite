@@ -39,11 +39,11 @@ const styles = {
 
 class ChatMessage extends React.Component {
   copyToClipboard = () => {
-    const { currentRoom, timestamp } = this.props;
+    const { currentRoom, idx } = this.props;
     // eslint-disable-next-line
     const { protocol, host } = location;
 
-    copy(`${protocol}//${host}/${rooms[currentRoom]}/${timestamp}`);
+    copy(`${protocol}//${host}/${rooms[currentRoom]}/${idx}`);
   };
 
   render() {
