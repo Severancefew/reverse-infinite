@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ChatLayout from './chat/ChatLayout';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
+import createHistory from 'history/createBrowserHistory';
 
 // A theme with custom primary and secondary color.
 // It's optional.
@@ -28,9 +29,9 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <BrowserRouter>
+        <Router history={createHistory({ basename: process.env.PUBLIC_URL })}>
           <ChatLayout />
-        </BrowserRouter>
+        </Router>
       </MuiThemeProvider>
     );
   }
