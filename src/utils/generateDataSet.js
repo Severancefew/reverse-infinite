@@ -15,7 +15,7 @@ const rooms = {
   1: 'random',
 };
 
-const generateMessages = ({ timestamp, length, count } = { length: 1000 }) => {
+const generateMessages = ({ timestamp, length } = { length: 1000 }) => {
   let currentTimestampOffset = timestamp || Date.now();
   const messages = range(0, length).map(idx => {
     const randomSeconds = random(30, 60) * 1000;
@@ -23,7 +23,7 @@ const generateMessages = ({ timestamp, length, count } = { length: 1000 }) => {
 
     return {
       timestamp: currentTimestampOffset,
-      readableDate: new Date(currentTimestampOffset).toUTCString(),
+      idx: idx,
       text: faker.lorem.sentences(),
       userId: random(0, 3),
     };
