@@ -150,7 +150,7 @@ class Chat extends React.Component {
           },
         },
       },
-      () => this.ref.scrollToRow(history[currentRoom].messages.length),
+      () => this.ref.scrollToRow(history[currentRoom].messages.length + 1),
     );
   };
 
